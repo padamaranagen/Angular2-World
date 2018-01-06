@@ -116,4 +116,28 @@ export class AppComponent{
 
 }
 ```
-It is a standard ES6 class where we should  put all our code related to the main app. This class is exported as AppComponent.
+It is a standard ES6 class where we should  put all our code related to the main app. This class is exported as AppComponent. 
+
+#### boot.ts
+```
+import {bootstrap} from 'angular2/platform/browser'
+import {AppComponent} from './app.component'
+
+bootstrap(AppComponent);
+```
+
+```
+import {bootstrap} from 'angular2/platform/browser'
+```
+We are telling to angular that we will load the application from the browser. 
+The idea of this file is that we can bootstrap Angular2 from the browser, server (Angular Universal), Apache Cordova, NativeScript or any other problem.
+
+```
+import {AppComponent} from './app.component'
+```
+We are importing our component "AppComponent" from the file "app.component"
+
+```
+bootstrap(AppComponent);
+```
+bootstrap will start your application
