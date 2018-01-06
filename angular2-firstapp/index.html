@@ -1,0 +1,33 @@
+<html>
+
+  <head>
+    <title>Angular 2 App</title>
+    <!-- 1. Load libraries -->    
+      <script src="import/angular2-polyfills.js"></script>
+      <script src="import/system.src.js"></script>
+      <script src="import/Rx.js"></script>
+      <script src="import/angular2.dev.js"></script>
+     
+     
+    <!-- 2. Configure SystemJS -->
+    <script>
+      System.config({
+        packages: {        
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/main')
+            .then(null, console.error.bind(console));
+    </script>
+
+  </head>
+
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+
+</html>

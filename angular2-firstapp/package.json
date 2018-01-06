@@ -1,0 +1,18 @@
+{
+  "name": "angular2-setup",
+  "version": "1.0.0",
+  "description": "my first angular2 app",
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
+  },
+  "author": "nagendramca2011@gmail.com",
+  "license": "UNLICENSED",  
+  "devDependencies": {
+    "concurrently": "^1.0.0",
+    "lite-server": "^1.3.1",
+    "typescript": "^1.7.3"
+  }
+}
