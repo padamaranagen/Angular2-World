@@ -80,4 +80,40 @@ This is the configuration file for Typescript.
 * "target": "ES5", Transpile Typescript files to es5
 *  "sourceMap": true, If you want to debug your application , you should set this to true.
 
+#### weather app first component
 
+#### app.component.ts
+
+```
+import {Component} from 'angular2/core';
+@Component({
+  selector:'my-app',
+  template:'<h1>Weather App</h1>'
+})
+export class AppComponent{
+
+}
+```
+```
+import {Component} from 'angular2/core' 
+```
+
+import the "component" module from the angular2 core library
+
+```
+@Component({
+  selector:'my-app',
+  template:'<h1>Weather App</h1>'
+})
+
+```
+This is a decorator of our standard ES6 class tells angular that this is a component.
+*  selector: should match with a dom element in the form <my-app></my-app>
+* Template: It is the HTML to be placed in the selector.
+
+```
+export class AppComponent{
+
+}
+```
+It is a standard ES6 class where we should  put all our code related to the main app. This class is exported as AppComponent.
