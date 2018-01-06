@@ -141,3 +141,71 @@ We are importing our component "AppComponent" from the file "app.component"
 bootstrap(AppComponent);
 ```
 bootstrap will start your application
+
+#### index.html
+```
+<html>
+
+  <head>
+    <title>Weather App</title>
+
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order-->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script>
+      System.config({
+        packages: {        
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/boot')
+            .then(null, console.error.bind(console));
+    </script>
+
+  </head>
+
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+  </body>
+
+</html>
+```
+
+```
+ System.config({
+        packages: {        
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('app/boot')
+            .then(null, console.error.bind(console));
+```
+* Module loading from System.js library.
+* defaultExtension: 'js', The default extension for our files are loaded are "js"
+*  System.import('app/main').then(null, console.error.bind(console));, we are importing our file app/boot. If there any error print it in the console. 
+* <my-app>Loading...</my-app>, This is the main entry point of our application. It should match our "selector" in the AppComponent
+
+
+#### Compile and Run
+
+npm start
+* This line will take care of calling Typescript and transpile our TS file to JS files
+* It will create a lite-server
+* Loads the index.html
+
+Open the browser and you should see your first angular application running
