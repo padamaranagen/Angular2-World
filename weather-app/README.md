@@ -55,3 +55,29 @@ Where
     * "angular2": "2.0.0-beta.0", Angular 2 Version 
     * "systemjs": "0.19.6", this is the library for loading javascript angular in the browser 
      * "es6-promise": "^3.0.2", "es6-shim": "^0.33.3", "reflect-metadata": "0.1.2",  "rxjs": "5.0.0-beta.0",  "zone.js": "0.5.10" all libraries used by Angular 2
+ 
+####  tsconfig.json
+```
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
+```
+
+This is the configuration file for Typescript. 
+
+* "target": "ES5", Transpile Typescript files to es5
+*  "sourceMap": true, If you want to debug your application , you should set this to true.
+
+
