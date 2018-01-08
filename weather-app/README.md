@@ -209,3 +209,117 @@ npm start
 * Loads the index.html
 
 Open the browser and you should see your first angular application running
+
+#### Weather Data
+
+* Create an Interface that defines the weather structure that we are going to receive from our external api
+* app.component will dislay the weather data 
+
+##### weather.ts
+export interface Weather{
+"id":number,
+"city":string,
+"main":string,
+"description":string
+}
+
+<ul>
+  <li> Weather Type: {{ weather.main }}</li>
+  <li> Description:{{weather.description}}<li>
+</ul>
+
+### Task 1
+
+* We are going to get the city form the user input
+* Add a html input
+* Change dynamically the html for telling tht user about the city weather
+
+procedure..
+
+Open app.component.ts 
+
+```
+<input[(ngModel)]="city" placeholder="Search weather for your city">
+```
+
+* Meaning of (): It is an Event binding capturing the change of the model "city"
+* Meanig of []: It is a bindig for displaying the value of city
+* Meaning of [()]: Two-way data binding. It will chage the value of city and display the value of city always updated.
+
+The syntax[()] is a short for
+<input [ngModel]="city" (ngModelChange)="city=$event" placeholder="Search weather for your city">
+
+* When the user press "enter" in out weather user input, we will start adding the weather of cities inside an array(weatherOfCities)
+* Prepare the template for rendering the weather of several cities
+
+Open app.component.ts
+```
+(keyup)="addCity(city,$event)
+```
+We capture the event "keyup" and call the method addCity
+addCity will be declare in our Component
+$event has all the information related to the "keyup" event
+
+```
+public cities:Array<string>;
+ ```
+Array of cities requed by the user.
+
+```
+ public weatherOfCities: Array<weather>;
+```
+Array of weather retured by our server. Currently the weather is hardcoded but we will modify this to get real weather from an Api
+
+```
+constructor(){
+        this.city = 'Tirupati';
+        this.weather = new weather(1, "Tirupati", "sunshine", "Beautiful with sunshine");
+        this.weatherOfCities = [];
+  }
+```
+Constructor of our AppComponent. This was added for learning purpose. We can have constructors in TypeScript. This initialization of variables could be done here or at definition time.
+
+
+```
+
+
+getWeather = function (city: string) {
+    var weather: Weather;
+    if (city.toLocaleLowerCase() == "Tirupati") {
+        weather = {
+            "id"=1,
+            "city": "Tirupati",
+            "main": "Clouds",
+            "description": "overcast clouds"
+        };
+    }
+    else if (city.toLocaleLowerCase() == "Bangalore") {
+        weather = {
+            "id"=1,
+            "city": "Bangalore",
+            "main": "Rain",
+            "description": "very heavy rain"
+        };
+    }
+    return weather;
+}
+```
+This is a TypeScript class method. This is the weather data for the requested city. We will refactor this later on for returning real data.
+
+```
+addCity = function (city: string, $event) {
+    if ($event.keyCode == 13) { 
+    /*
+    we check the KeyCode of the event (KeyCode==13) means "enter" key press
+    */
+        var weather = this.getWeather(city);
+        if (weather) {
+            this.weatherOfCities.push(this.getWeather(city));
+        }
+        this.clity = "";    
+    }
+}
+```
+This method is call when the user press enter. We receive the $event with data related to keyup event.
+
+
