@@ -4,18 +4,41 @@ import {Weather} from './weather';
 	selector:'my-app',
     template:
     `
-    <h1>Weather App</h1>
+    <header>
+        <h1>Weather App</h1>
+    </header>
+    <div class="content">
     <input [(ngModel)]="city" (keyup)="addCity(city,$event)" placeholder="Search weather in city">   
     <ul *ngFor="#weather of weatherOfCities">
         <li>
             <h2>{{weather.city}}:</h2>
-        </li>
-        <ul>
+            <ul>
             <li> Weather type :{{ weather.main }}</li>
             <li> Weather decrition: {{weather.description}</li>
-        </ul>    
+             </ul>    
+          </li>
     </ul>
-    `
+    </div>
+    `,
+    styles: [`
+         header h1{
+              padding:10px;
+              background:#0094ff;
+              color:#000000;
+              text-shadow:1px 1px 4px #ff6a00;
+          }
+          .context{
+               padding:10px;
+          }
+          input{
+              font-size:16px;
+              padding:4px;
+          }
+          .weather-card{
+              border-bottom:1px solid #808080;
+              padding-bottom:10px;
+          }
+    `]
 })
 export class AppComponent{
     public city: string;

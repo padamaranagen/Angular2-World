@@ -262,12 +262,14 @@ $event has all the information related to the "keyup" event
 
 ```
 public cities:Array<string>;
- ```
+```
+
 Array of cities requed by the user.
 
 ```
  public weatherOfCities: Array<weather>;
 ```
+
 Array of weather retured by our server. Currently the weather is hardcoded but we will modify this to get real weather from an Api
 
 ```
@@ -281,8 +283,6 @@ Constructor of our AppComponent. This was added for learning purpose. We can hav
 
 
 ```
-
-
 getWeather = function (city: string) {
     var weather: Weather;
     if (city.toLocaleLowerCase() == "Tirupati") {
@@ -304,7 +304,9 @@ getWeather = function (city: string) {
     return weather;
 }
 ```
+
 This is a TypeScript class method. This is the weather data for the requested city. We will refactor this later on for returning real data.
+
 
 ```
 addCity = function (city: string, $event) {
@@ -322,4 +324,52 @@ addCity = function (city: string, $event) {
 ```
 This method is call when the user press enter. We receive the $event with data related to keyup event.
 
+
+#### Angular2 STYLES
+
+##### We should have a better design
+
+* we are going to add styles to our component
+* The style will be isolated from the rest of the application, so our css selector won't overlap with the global css of our page
+
+You add the below code into app.component.ts
+
+```
+styles: [`
+         header h1{
+              padding:10px;
+              background:#0094ff;
+              color:#ff6a00;
+              text-shadow:1px 1px 4px #ff6a00;
+          }
+          .context{
+               padding:10px;
+          }
+          input{
+              font-size:16px;
+              padding:4px;
+          }
+          .weather-card{
+              border-bottom:1px solid #808080;
+              padding-bottom:10px;
+          }
+    `]
+```
+
+Every Component has their own "Styles" property
+We can add normal css styles for customising our Component
+
+INLINE CSS? WHY NOT EXTERNAL CSS?
+* Use the property "styles" for inline css.
+* Use the property "styleUrls" for external css files.
+* External css is really powerful. We can use Sass and generate the css of our components.
+
+
+```
+@Component({
+  .........,
+  
+  styleUrls:["app/app.component.css"]
+})
+```
 
