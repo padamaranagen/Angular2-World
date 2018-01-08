@@ -9,6 +9,7 @@ import {Weather} from './weather';
     </header>
     <div class="content">
     <input [(ngModel)]="city" (keyup)="addCity(city,$event)" placeholder="Search weather in city">   
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }} </p>
     <ul *ngFor="#weather of weatherOfCities">
         <li>
             <h2>{{weather.city}}:</h2>
@@ -38,12 +39,17 @@ import {Weather} from './weather';
               border-bottom:1px solid #808080;
               padding-bottom:10px;
           }
+        .error-message{
+          color:red;
+          font-style:8px;
+        }
     `]
 })
 export class AppComponent{
     public city: string;
     public cities: Array<string>;
     public weatherOfCities: Array<Weather>;
+    public errorMessage: string;
     //weather: weather;
 	constructor(){
         this.city = '';
@@ -51,12 +57,16 @@ export class AppComponent{
         this.weatherOfCities = [];
     }
     getWeather = function (city: string) {
+        this.errorMessage = "";
         var weather: Weather;
         if (city.toLocaleLowerCase() == "Tirupati") {
-            weather = {"id":1,"city": "Tirupati","main": "Clouds","description": "overcast clouds"};
+            weather = { "id": 1, "city": "Tirupati", "main": "Clouds", "description": "overcast clouds" };
         }
         else if (city.toLocaleLowerCase() == "Bangalore") {
-            weather = {"id": 2,"city": "Bangalore","main": "Rain","description": "very heavy rain"};
+            weather = { "id": 2, "city": "Bangalore", "main": "Rain", "description": "very heavy rain" };
+        }
+        else {
+            this.errorMessage = "This city doesn't exist";
         }
         return weather;
     }

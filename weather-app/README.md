@@ -373,3 +373,23 @@ INLINE CSS? WHY NOT EXTERNAL CSS?
 })
 ```
 
+#### Angular2: NGIF
+
+What happen if the user type a city that doesn't  weather data?
+
+* We should show a message to the user when we don't have weather data
+* *nfif will be use for conditional showing if there is no data
+
+```
+ <p *ngIf="errorMessage" class="error-message">{{ errorMessage }} </p>
+```
+```*ngif``` for showing the paragraph only if there is an errorMessage
+It is important to remember the ```*```
+We ise the class "error-message" for the css style.
+
+##### App.component.css
+
+.error-message{
+  color:red;
+  font-style:8px;
+}
